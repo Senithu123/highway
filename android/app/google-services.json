@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159340872168",
+    "project_id": "highwaytoll-dac3a",
+    "storage_bucket": "highwaytoll-dac3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159340872168:android:971394f0c82834a7d2245d",
+        "android_client_info": {
+          "package_name": "highway.toll"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVdbd3PYX32AGkETagqGTbBTPjPWi_FvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

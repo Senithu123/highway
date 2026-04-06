@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && (
+          request.auth.uid == 'zjPVUWTokbOUkhfPplyP1sSZz132'
+          || request.auth.token.email == 'admin@gmail.com'
+        );
+    }
+
+    match /users/{userId} {
+      allow create: if isOwner(userId);
+      allow read, update, delete: if isOwner(userId) || isAdmin();
+
+      match /vehicles/{vehicleId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /payment_methods/{paymentMethodId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /trips/{tripId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    match /{path=**}/vehicles/{vehicleId} {
+      allow read: if isAdmin();
+    }
+
+    match /{path=**}/trips/{tripId} {
+      allow read: if isAdmin();
+    }
+
+    match /toll_gates/{gateId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /system_config/{docId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+  }
+}
