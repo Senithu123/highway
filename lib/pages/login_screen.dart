@@ -95,7 +95,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF7C63FF).withValues(alpha: 0.25),
+                            color: const Color(
+                              0xFF7C63FF,
+                            ).withValues(alpha: 0.25),
                             blurRadius: 48,
                             spreadRadius: 4,
                           ),
@@ -213,10 +215,10 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor =
-        isPrimary ? const Color(0xFF151A25) : Colors.white;
-    final backgroundColor =
-        isPrimary ? Colors.white : Colors.white.withValues(alpha: 0.06);
+    final foregroundColor = isPrimary ? const Color(0xFF151A25) : Colors.white;
+    final backgroundColor = isPrimary
+        ? Colors.white
+        : Colors.white.withValues(alpha: 0.06);
 
     return SizedBox(
       width: double.infinity,
@@ -233,14 +235,9 @@ class _ActionButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             side: isPrimary
                 ? BorderSide.none
-                : BorderSide(
-                    color: Colors.white.withValues(alpha: 0.16),
-                  ),
+                : BorderSide(color: Colors.white.withValues(alpha: 0.16)),
           ),
-          textStyle: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-          ),
+          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
         ),
       ),
     );
@@ -248,10 +245,7 @@ class _ActionButton extends StatelessWidget {
 }
 
 class _GlowBlob extends StatelessWidget {
-  const _GlowBlob({
-    required this.size,
-    required this.color,
-  });
+  const _GlowBlob({required this.size, required this.color});
 
   final double size;
   final Color color;
@@ -264,10 +258,7 @@ class _GlowBlob extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: color,
-          ),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
         ),
       ),
     );

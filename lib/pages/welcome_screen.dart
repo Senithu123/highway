@@ -55,7 +55,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   AnimatedBuilder(
                     animation: _controller,
                     builder: (context, child) {
-                      final pulse = 1 + ((_controller.value - 0.5).abs() * -0.04);
+                      final pulse =
+                          1 + ((_controller.value - 0.5).abs() * -0.04);
                       return Transform.scale(scale: pulse, child: child);
                     },
                     child: const _LogoHero(),
@@ -181,11 +182,7 @@ class _SceneBackground extends StatelessWidget {
             color: const Color(0xFF143A64).withValues(alpha: 0.24),
           ),
         ),
-        const Positioned.fill(
-          child: IgnorePointer(
-            child: SizedBox.expand(),
-          ),
-        ),
+        const Positioned.fill(child: IgnorePointer(child: SizedBox.expand())),
         Positioned.fill(
           child: IgnorePointer(
             child: CustomPaint(
@@ -224,10 +221,7 @@ class _SceneBackground extends StatelessWidget {
 }
 
 class _GlowBlob extends StatelessWidget {
-  const _GlowBlob({
-    required this.size,
-    required this.color,
-  });
+  const _GlowBlob({required this.size, required this.color});
 
   final double size;
   final Color color;
@@ -240,10 +234,7 @@ class _GlowBlob extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: color,
-          ),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
         ),
       ),
     );
@@ -375,12 +366,10 @@ class _LanePatternPainter extends CustomPainter {
 
   void _drawLaneDashes(
     Canvas canvas,
-    PathMetric metric,
-    {
+    PathMetric metric, {
     required Color color,
     required double speedOffset,
-  }
-  ) {
+  }) {
     final segmentPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
@@ -392,9 +381,11 @@ class _LanePatternPainter extends CustomPainter {
     final gap = metric.length * 0.17;
     final shift = ((1 - progress + speedOffset) % 1) * gap;
 
-    for (double distance = -dashLength + shift;
-        distance < metric.length + dashLength;
-        distance += gap) {
+    for (
+      double distance = -dashLength + shift;
+      distance < metric.length + dashLength;
+      distance += gap
+    ) {
       final start = distance.clamp(0.0, metric.length);
       final end = (distance + dashLength).clamp(0.0, metric.length);
       if (end > start) {
@@ -411,18 +402,24 @@ class _LanePatternPainter extends CustomPainter {
   }) {
     final sweepY = size.height * (0.14 + (progress * 0.16));
     final beamPaint = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          glowColor.withValues(alpha: 0),
-          glowColor.withValues(alpha: 0.34),
-          glowColor.withValues(alpha: 0),
-        ],
-        stops: const [0.0, 0.5, 1.0],
-      ).createShader(
-        Rect.fromLTWH(size.width * 0.34, sweepY - 20, size.width * 0.62, 40),
-      )
+      ..shader =
+          LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              glowColor.withValues(alpha: 0),
+              glowColor.withValues(alpha: 0.34),
+              glowColor.withValues(alpha: 0),
+            ],
+            stops: const [0.0, 0.5, 1.0],
+          ).createShader(
+            Rect.fromLTWH(
+              size.width * 0.34,
+              sweepY - 20,
+              size.width * 0.62,
+              40,
+            ),
+          )
       ..strokeWidth = 14
       ..strokeCap = StrokeCap.round
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10);
@@ -498,10 +495,7 @@ class _LogoHero extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [Color(0xFFFFFFFF), Color(0xFFF5F3FF)],
               ),
-              border: Border.all(
-                color: const Color(0xFFD7D2F7),
-                width: 1.4,
-              ),
+              border: Border.all(color: const Color(0xFFD7D2F7), width: 1.4),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16),
