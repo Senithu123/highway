@@ -115,7 +115,6 @@ class VehiclesScreen extends StatelessWidget {
                 }
               }
             }
-
             return Padding(
               padding: EdgeInsets.only(
                 left: 20,
